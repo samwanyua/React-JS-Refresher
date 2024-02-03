@@ -8,6 +8,8 @@ const Home = () => {
         {title: 'Top 10 visiting places in Chicago', body: 'Lorem ipsum....', author: 'mario', id: 3}
     ]);
 
+    const [name, setName] = useState('mario')
+
     const handleDelete = (id) => {
         const newBlogs = blogs.filter(blog => blog.id != id)
         setBlogs(newBlogs)
@@ -15,7 +17,8 @@ const Home = () => {
 
     useEffect(() => {
         console.log('useEffect')
-    })
+        console.log(name)
+    }, [name]) // Dependency array - ensures the useEffect hook runs the function after first intial render
     return ( 
         <div className="home">
             <BlogList 
@@ -29,6 +32,8 @@ const Home = () => {
                 handleDelete={handleDelete}
 
             />
+            <button onClick={() => setName('Luigi')}>Change Name</button>
+            <p>{name}</p>
         </div>
      );
 }
